@@ -1,27 +1,25 @@
 var Scout = require('zetta-scout');
 var util = require('util');
-var Starter = require('./starter');
+var LED = require('./led');
 
-var StarterScout = module.exports = function() {
-  Scout.call(this);
+var LedScout  = module.exports = function() {
+    this.pins = Array.prototype.slice.call(arguments);
+    Scout.call(this);
 };
-util.inherits(StarterScout, Scout);
 
-StarterScout.prototype.init = function(next) {
+util.inherits(LedScout, Scout);
 
+LedScout.prototype.init = function(next) {
   var self = this;
-
-  var query = this.server.where({type: 'starter'});
-  var options = {default: 'DEFAULT'};
-
-  this.server.find(query, function(err, results) {
-    if (results[0]) {
-      self.provision(results[0], Starter, options);
-    } else {
-      self.discover(Starter, options);
-    }
-  });
-
+  this.pins.forEach(function(pin){
+  var query = self.server.where({type: 'led', pin:pin});
+    self.server.find(query, function(err, results) {
+        if(results[0]){
+            self.provision(results[0], LED, pin);
+        }
+        else
+            self.discover(LED, pin);
+    });
+ });
   next();
-
 };

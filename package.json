@@ -8,6 +8,7 @@
   },
   "license": "MIT",
   "dependencies": {
+    "cycle": "^1.0.3",
     "zetta-device": "*",
     "zetta-scout": "*"
   },

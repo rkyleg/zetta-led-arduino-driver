@@ -1,8 +1,8 @@
 var zetta = require('zetta');
-var Starter = require('../index');
+var Led = require('../index');
 var app = require('./apps/starter');
 
 zetta()
-  .use(Starter)
-  .use(app)
+  .use(Led, 13)
+//  .use(app)
   .listen(1337);
