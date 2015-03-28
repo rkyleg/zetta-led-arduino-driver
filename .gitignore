@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 node_modules/
 example/node_modules/
 example/.registry/*
@@ -10,3 +11,13 @@ example/.peers/medea.lock
 .peers/medea.lock
 npm-debug.log
 .DS_Store
+=======
+# Vim
+*.swp
+
+# Logs
+*.log
+
+# Folders
+node_modules
+>>>>>>> f4a3e5df274d2f3516cf7ebef32995b52d011e51
