@@ -2,10 +2,10 @@ var Device = require('zetta-device');
 var util = require('util');
 var five = require('johnny-five');
 
-var LED = module.exports = function(pin) {
+var LED = module.exports = function(led) {
   Device.call(this);
-  this.pin = pin;
-  //use name arduino because 'board' is an internal variable used by Zetta, and using it will cause a circular loop in JSON.stringify() operations
+  this._led = led;
+  this._board = led.board;
 };
 util.inherits(LED, Device);
 
@@ -13,7 +13,7 @@ LED.prototype.init = function(config) {
   var self = this;
   config
   .name('LED')
-  .type('ardled')
+  .type('led')
   .state('off')
   .when('off', { allow: ['turnOn', 'toggle']})
   .when('on', { allow: ['turnOff', 'toggle'] })
@@ -22,46 +22,37 @@ LED.prototype.init = function(config) {
   .map('turnOn', this.turnOn)
   .map('turnOff', this.turnOff)
   .map('toggle', this.toggle)
-  .map('blink', this.blink);
-  this.arduino = new five.Board();
-  this.arduino.on('ready', function(){
-    self.led = new five.Led(self.pin);
-  });
+  .map('blink', this.blink); 
 };
 
 LED.prototype.turnOn = function(cb){
-    var self = this;
-    this.led.on();
+    this._led.on();
     this.state = 'on';
-
     cb();
 };
 
 LED.prototype.turnOff = function(cb){
-    var self = this;
-    this.led.off();
+    this._led.off();
     this.state = 'off';
     cb();
 };
 
 LED.prototype.toggle = function(cb){
-    var self = this;
     if(this.state === 'off'){    
-        this.led.toggle();
+        this._led.toggle();
         this.state = 'off';
     }
     else if(this.state === 'on'){
-        this.led.toggle();
+        this._led.toggle();
         this.state = 'on';
     }
     else
-        this.led.stop().off();
+        this._led.stop().off();
     cb();
 };
 
 LED.prototype.blink = function(cb){
-    var self = this;
-    this.led.blink();
+    this._led.blink();
     this.state = 'blink';
     cb();
 };
