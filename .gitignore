@@ -9,6 +9,7 @@ example/.peers/medea.lock
 .registry/medea.lock
 .peers/*
 .peers/medea.lock
+.devices/*
 npm-debug.log
 .DS_Store
 =======
