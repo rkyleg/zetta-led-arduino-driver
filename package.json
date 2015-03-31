@@ -1,6 +1,6 @@
 {
 
-  "name": "zetta-starter-driver",
+  "name": "zetta-arduino-led-driver",
   "version": "0.1.0",
   "description": "Zetta starter driver for any platform",
   "main": "server.js",
@@ -14,9 +14,6 @@
     "johnny-five": "^0.8.49",
     "zetta-device": "*",
     "zetta-scout": "*"
-  },
-  "directories": {
-    "example": "example"
   },
   "keywords": [
     "zetta",

@@ -1,6 +1,6 @@
 
 var zetta = require('zetta');
-var Led = require('./index');
+var Led = require('./lib/index');
 var app = require('./apps/starter');
 
 zetta()
