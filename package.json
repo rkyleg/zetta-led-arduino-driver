@@ -1,5 +1,4 @@
 {
-
   "name": "zetta-arduino-led-driver",
   "version": "0.1.0",
   "description": "Zetta starter driver for any platform",
@@ -9,9 +8,10 @@
   },
   "license": "MIT",
   "dependencies": {
-    "zetta": "*",
     "cycle": "^1.0.3",
     "johnny-five": "^0.8.49",
+    "serialport": "^1.6.3",
+    "zetta": "*",
     "zetta-device": "*",
     "zetta-scout": "*"
   },
