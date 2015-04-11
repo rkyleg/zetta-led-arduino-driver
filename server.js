@@ -7,7 +7,7 @@ var app = require('./apps/starter');
 var pinObjects = [{"name": "greenLed", "pin": 13}, {"name": "redLed", "pin":  12}];
 
 zetta()
-  .use(Led, pinObjects)
-//  .use(app)
-  .listen(3002);
+    .use(Led, pinObjects)
+//    .use(app)
+    .listen(3002);
 
